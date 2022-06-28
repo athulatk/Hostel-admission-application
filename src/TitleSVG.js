@@ -2,10 +2,12 @@ import React from "react";
 
 export default function TitleSVG() {
     return (
-        <svg viewBox="0 0 517 190" xmlns="http://www.w3.org/2000/svg">
-            <text fill="#875A70" xmlSpace="preserve" fontFamily="Josefin Sans" fontSize="14.9942" letterSpacing="0em">
-                <tspan x="1.31021" y="185.848">
-                    Department of Business Administration, College of Engineering Trivandrum
+        <svg viewBox="-50 0 517 190" xmlns="http://www.w3.org/2000/svg">
+            {/* <text fill="#875A70" xmlSpace="preserve" fontFamily="Josefin Sans" fontSize="14.9942" letterSpacing="0em"> */}
+            <text fill="#875A70" xmlSpace="preserve" fontFamily="Josefin Sans" fontSize="20" letterSpacing="0em">
+                {/* <tspan x="1.31021" y="185.848"  > */}
+                <tspan x="-37.5" y="185.848"  >
+                कर्म ज्यायो ह्यकर्मण: | Action is superior to inaction 
                 </tspan>
             </text>
             <text
@@ -16,12 +18,12 @@ export default function TitleSVG() {
                 fontWeight="300"
                 letterSpacing="0em"
             >
-                <tspan x="145" y="107.809">
+                {/* <tspan x="145" y="107.809">
                     SCHOOL OF{" "}
                 </tspan>
                 <tspan x="145" y="156.809">
                     MANAGEMENT
-                </tspan>
+                </tspan> */}
             </text>
             <text
                 fill="#F68966"
@@ -31,7 +33,8 @@ export default function TitleSVG() {
                 fontWeight="600"
                 letterSpacing="0em"
             >
-                <tspan x="145" y="55.5011">
+                {/* <tspan x="145" y="55.5011"> */}
+                <tspan x="145" y="110">
                     CET
                 </tspan>
             </text>
@@ -44,11 +47,11 @@ export default function TitleSVG() {
                 fontWeight="bold"
                 letterSpacing="0em"
             >
-                <tspan x="1" y="156.749">
+                {/* <tspan x="1" y="156.749">
                     MBA
-                </tspan>
+                </tspan> */}
             </text>
-            <rect y="1" width="105" height="113" fill="url(#pattern0)" />
+            <rect  y="25" width="105" height="113" fill="url(#pattern0)" />
             <defs>
                 <pattern id="pattern0" patternContentUnits="objectBoundingBox" width="1" height="1">
                     <use xlinkHref="#image0" transform="translate(-0.104762 -0.124908) scale(0.00258999 0.00240662)" />
