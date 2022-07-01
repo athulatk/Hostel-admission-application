@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 
 function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
     function updatePersonal(e) {
@@ -13,6 +13,80 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
         // setFullDetails(newDetails)
         nextform(e);
     }
+
+    const [courses,setCourses]=useState([{value:"",display:"Select one"}])
+    const [displayinput,setDisplayInput]=useState(false)
+
+
+    useEffect(() => {
+        if(details.programme==="ug"){
+            setCourses(ugcourses)
+        }
+        if(details.programme==="pg"){
+            setCourses(pgcourses)
+        }
+        if(details.programme==="phd"){
+            setCourses([{value:"phd",display:"Ph.D"}])
+        }
+        if(details.course==="others"){
+            setDisplayInput(true)
+        }
+        else{
+            setDisplayInput(false)
+        }
+    }, [details.course, details.programme])
+    
+    
+    const ugcourses=[
+        {
+            value:"civil",
+            display:"Civil Engineering"
+        },
+        {
+            value:"cse",
+            display:"Computer Science and Engineering"
+        },
+        {
+            value:"ece",
+            display:"Electronics and Communication Engineering"
+        },
+        {
+            value:"aei",
+            display:"Applied Electronics and Instrumentation"
+        },
+        {
+            value:"eee",
+            display:"Electrical and Electronics and Communication"
+        },
+        {
+            value:"me",
+            display:"Mechanical Engineering"
+        },
+        {
+            value:"ie",
+            display:"Industrial Engineering"
+        },
+        {
+            value:"ar",
+            display:"Architecture"
+        }
+        
+    ]
+
+    const pgcourses=[
+        {
+            value:"mba",
+            display:"MBA"
+        },
+        {
+            value:"mca",
+            display:"MCA"
+        },
+        {
+            value:"others",
+            display:"Others"
+        }
+    ]
 
     return (
         <div className="w-11/12 md:w-9/12 mx-auto my-6">
@@ -39,10 +113,11 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                             <label className="form-label mb-1" htmlFor="fullname">
                                 Gender
                             </label>
-                            <select name="gender" id="" className="form-control">
+                            <select name="gender" id="" value={details.gender} onChange={updatePersonal} className="form-control">
                                 <option value="">Select an option</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
+                                <option value="others">Others</option>
                             </select>
                             </div>
                         </div>
@@ -78,23 +153,18 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                         </div>
                         <div className="form-field mt-4">
                             <label className="form-label mb-1" htmlFor="nation">
-                                Course
+                                Programme
                             </label>
                             <select className="form-control w-64"
                                 type="text"
-                                id="course"
-                                name="course"
-                                value={details.course}
+                                id="programme"
+                                name="programme"
+                                value={details.programme}
                                 onChange={updatePersonal}>
                                 <option value="">Select an option</option>
-                                <option value="btech">B.Tech</option>
-                                <option value="barch">B.Arch</option>
+                                <option value="ug">UG</option>
+                                <option value="pg">PG</option>
                                 <option value="phd">Ph.D</option>
-                                <option value="mtech">M.Tech</option>
-                                <option value="mba">MBA</option>
-                                <option value="march">M.Arch</option>
-                                <option value="mplan">M.Plan</option>
-                                <option value="mca">MCA</option>
                             </select>
                         </div>
                         <div className="form-field mt-4">
@@ -109,29 +179,59 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                 onChange={updatePersonal}>
                                 <option value="">Select an option</option>
                                 <option value="cse">Computer Science and Engineering</option>
+                                <option value="civil">Civil Engineering</option>
                                 <option value="ece">Electronics and Communication Engineering</option>
-                                <option value="aei">Applied Electronics and Engineering</option>
                                 <option value="eee">Electrical and Electronics Engineering</option>
                                 <option value="me">Mechanical Engineering</option>
-                                <option value="ie">Industrial Engineering</option>
                                 <option value="arch">Architecture</option>
                             </select>
                         </div>
+                        <div className="form-field mt-4">
+                            <label className="form-label mb-1" htmlFor="nation">
+                                Course
+                            </label>
+                            <select className="form-control w-12/12"
+                                type="text"
+                                id="course"
+                                name="course"
+                                value={details.course}
+                                onChange={updatePersonal}>
+                                {courses.map(item=>{
+                                    return(
+                                        <>
+                                            <option value={item.value}>{item.display}</option>
+                                        </>
+                                    )
+                                })}
+                            </select>
+                        </div>
+                        {displayinput?(<div className="form-field mt-4">
+                            <input className="form-control w-12/12"
+                                type="text"
+                                placeholder="Enter the course"
+                                id="courseother"
+                                name="courseother"
+                                value={details.courseother}
+                                onChange={updatePersonal}>
+                            </input>
+                        </div>):""}
                         <div className="sm:flex">
                             <div className="form-field mt-4 sm:mr-2.5">
                                 <label className="form-label mb-1" htmlFor="gender">
                                     Semester
                                 </label>
-                                <select className="form-control" name="sem" id="sem" onChange={updatePersonal}>
+                                <select className="form-control" name="sem" id="sem" value={details.sem} onChange={updatePersonal}>
                                     <option value="">Select an option</option>
-                                    <option value="1">S1</option>
-                                    <option value="2">S2</option>
-                                    <option value="3">S3</option>
-                                    <option value="4">S4</option>
-                                    <option value="5">S5</option>
-                                    <option value="6">S6</option>
-                                    <option value="7">S7</option>
-                                    <option value="8">S8</option>
+                                    <option value="S1">S1</option>
+                                    <option value="S2">S2</option>
+                                    <option value="S3">S3</option>
+                                    <option value="S4">S4</option>
+                                    <option value="S5">S5</option>
+                                    <option value="S6">S6</option>
+                                    <option value="S7">S7</option>
+                                    <option value="S8">S8</option>
+                                    <option value="S9">S9</option>
+                                    <option value="S10">S10</option>
                                 </select>
                             </div>
                         </div>

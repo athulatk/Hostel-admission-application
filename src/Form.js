@@ -6,6 +6,7 @@ import GeneratePDF from "./GeneratePDF";
 import { db } from "./firebase_config";
 import { ref, set, onValue } from "firebase/database";
 import AlreadySubmitted from "./AlreadySubmitted";
+import ApplicationClosed from "./ApplicationClosed";
 
 export default function Form({ user, logout }) {
     const personal = {
@@ -14,20 +15,16 @@ export default function Form({ user, logout }) {
         dob: "",
         gender:"",
         course: "",
+        courseother:"",
+        programme:"",
         dept: "",
         sem: "",
         mob: "",
         pemail: "",
         address: "",
-        general:false,
-        obc:false,
-        oec:false,
-        obch:false,
-        sc:false,
-        st:false,
-        bpl:false,
-        goi:false,
-        differentlyabled:false,
+        bpl:"No",
+        goi:"No",
+        differentlyabled:"No",
         cgpa:"",
         examrank:"",
         aincome:"",
@@ -45,50 +42,18 @@ export default function Form({ user, logout }) {
         formno: 1,
     });
 
+
     const [formno, setformno] = useState(0);
 
+    const [applicationOpen, setApplicationOpen] = useState(false)
+
     useEffect(() => {
-        var dbRef = ref(db, "users/" + user.uid);
+        var dbRef = ref(db, "application/");
 
         onValue(dbRef, (snapshot) => {
             if (snapshot.exists()) {
-                var arrayObj = {};
-                var arrNames = [
-                    "awards",
-                    "thesis",
-                    "projects1",
-                    "projects2",
-                    "projects3",
-                    "projects4",
-                    "projects5",
-                    "books",
-                    "publications1",
-                    "publications2",
-                    "publications3",
-                    "publications4",
-                    "publications5",
-                    "patents",
-                    "filedPatents",
-                    "referee",
-                ];
-
-                for (var aname of arrNames) {
-                    if (snapshot.val()[aname] === undefined) arrayObj[aname] = [];
-                }
-
-                // console.log(arrayObj)
-
-                setDetails({
-                    ...snapshot.val(),
-                    ...arrayObj,
-                });
-
-                console.log(snapshot.val().formno);
-                setformno(snapshot.val().formno);
-                // console.log({
-                //     ...snapshot.val(),
-                //     ...arrayObj,
-                // });
+                console.log("open = ",snapshot.val())
+                setApplicationOpen(snapshot.val().applicationOpen)
             } else {
                 setformno(1);
             }
@@ -147,8 +112,8 @@ export default function Form({ user, logout }) {
 
     return (
         <>
-            {details.formSubmitted ? (
-                <AlreadySubmitted />
+            {details.formSubmitted||!applicationOpen ? (
+                applicationOpen?<AlreadySubmitted />:<ApplicationClosed/>
             ) : (
                 <>
                     {formno === 0 || formno === 8 ? (
