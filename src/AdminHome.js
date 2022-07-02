@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { ref, onValue } from "firebase/database"
-import { auth, db } from "./firebase_config";
+import { db } from "./firebase_config";
 import { PDFExport } from "@progress/kendo-react-pdf";
-import {useNavigate, useLocation} from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import TitleSVG from './TitleSVG';
 
 
@@ -29,28 +29,6 @@ function AdminHome({submitted}) {
                 const userdata=snapshot.val()
 
                 var tempDetails=[]
-
-                var arrayObj = {};
-                var arrNames = [
-                    "postphd",
-                    "prephd",
-                    "awards",
-                    "thesis",
-                    "projects1",
-                    "projects2",
-                    "projects3",
-                    "projects4",
-                    "projects5",
-                    "books",
-                    "publications1",
-                    "publications2",
-                    "publications3",
-                    "publications4",
-                    "publications5",
-                    "patents",
-                    "filedPatents",
-                    "referee",
-                ];
 
                 for(var uid in userdata)
                 {
@@ -85,7 +63,7 @@ function AdminHome({submitted}) {
                 // });
             } 
         });
-    }, [])
+    }, [submitted])
 
     // useEffect(() => {
     //     console.log(location.state)

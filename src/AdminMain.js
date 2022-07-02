@@ -1,12 +1,10 @@
 import { onValue, ref, set } from 'firebase/database';
 import React, { useEffect, useState } from 'react'
-import { useNavigate } from 'react-router';
 import AdminHome from './AdminHome';
 import { db } from './firebase_config';
 
 function AdminMain({logout}) {
 
-    const navigate=useNavigate();
     const [list, setList] = useState(null)
     const [applicationOpen, setApplicationOpen] = useState(false)
     const [enableEdit, setEnableEdit] = useState(false)
@@ -54,11 +52,11 @@ function AdminMain({logout}) {
     }
 
     return (
-        <div className="App bg-gray-100 flex flex-col justify-center items-center space-y-8">
+        <div className="App bg-gray-100 flex flex-col justify-center items-center space-y-8 ">
 
-            {!list &&(<div className="flex w-ful mt-20 flex-row justify-center items-center space-x-6">
+            {!list &&(<div className="flex w-6/12 mt-20 flex-row justify-between items-center ">
                     <button 
-                        className="btn"
+                        className="btn w-64"
                         onClick={()=>{
                             // navigate(
                             //     "/admin/home",  
@@ -76,7 +74,7 @@ function AdminMain({logout}) {
                     </button>
 
                     <button 
-                        className="btn"
+                        className="btn w-64"
                         onClick={()=>{
                             // navigate(
                             //     "/admin/home",  
@@ -95,9 +93,9 @@ function AdminMain({logout}) {
                 </div>)}
 
                 {!list&&(
-                <div>
+                <div className='flex w-6/12 mt-20 flex-row justify-between items-center '>
                     <button 
-                    className="btn"
+                    className="btn w-64"
                     onClick={()=>{
                         openApplications()
                     }}
@@ -106,7 +104,7 @@ function AdminMain({logout}) {
                     </button>
 
                     <button 
-                    className="btn"
+                    className="btn w-64"
                     onClick={()=>{
                         enableEditFn()
                     }}

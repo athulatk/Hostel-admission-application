@@ -3,7 +3,6 @@ import "./App.css";
 import TitleSVG from "./TitleSVG";
 import { auth } from "./firebase_config";
 import LoginAdmin from "./LoginAdmin";
-import AdminHome from "./AdminHome";
 import { ref, onValue } from "firebase/database";
 import { db } from "./firebase_config";
 import AdminMain from "./AdminMain";

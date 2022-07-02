@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import { auth, db } from "./firebase_config";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { ref, set } from "firebase/database";
+import { auth } from "./firebase_config";
+import {  signInWithEmailAndPassword } from "firebase/auth";
+// import { ref, set } from "firebase/database";
 
-function LoginAdmin({ setUser }) {
+function LoginAdmin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-
-    const [hasAccount, setHasAccount] = useState(false);
 
     const login = () => {
         signInWithEmailAndPassword(auth, email, password)
@@ -17,24 +15,24 @@ function LoginAdmin({ setUser }) {
         });
     };
 
-    const signup = () => {
-        createUserWithEmailAndPassword(auth, email, password)
-        .then((userCred)=>{
-            // console.log(user)
-            const userRef = ref(db, `admin/${userCred.user.uid}`);
-            set(userRef, {
-                admin:false,
-                email: userCred.user.email
-            }).then(()=>{
-                alert("success")
-            }).catch((err)=>{
-                alert(err)
-            })
-        })
-        .catch((err) => {
-            setError(err.message);
-        });
-    };
+    // const signup = () => {
+    //     createUserWithEmailAndPassword(auth, email, password)
+    //     .then((userCred)=>{
+    //         // console.log(user)
+    //         const userRef = ref(db, `admin/${userCred.user.uid}`);
+    //         set(userRef, {
+    //             admin:false,
+    //             email: userCred.user.email
+    //         }).then(()=>{
+    //             alert("success")
+    //         }).catch((err)=>{
+    //             alert(err)
+    //         })
+    //     })
+    //     .catch((err) => {
+    //         setError(err.message);
+    //     });
+    // };
 
     return (
         <div className="flex-75 flex justify-center items-center">

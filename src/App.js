@@ -11,7 +11,6 @@ import {
     Route,
   } from "react-router-dom";
 import GeneratePDFAdmin from "./GeneratePdfAdmin";
-import AdminHome from "./AdminHome";
 
 export default function App() {
     const [onBoarding, setOnBoarding] = useState(true);

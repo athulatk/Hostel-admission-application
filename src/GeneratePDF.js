@@ -41,7 +41,7 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
             {/* <h1 className="text-4xl text-tertiary font-light mt-8 text-center">Application for Hostel Admission</h1> */}
             <h2 className="text-center mt-1 font-bold text-gray-500">Review your application</h2>
             <div className="w-11/12 md:w-9/12 mx-auto my-8 bg-white shadow-md rounded-xl pb-2">
-               {applicationNo!=-1&&( <PDFExport paperSize="A4" scale={0.6} margin="1.3cm" ref={pdfExportComponent}>
+               {applicationNo!==-1&&( <PDFExport paperSize="A4" scale={0.6} margin="1.3cm" ref={pdfExportComponent}>
                     <dl className="review-section">
                         <h2>Application CET/Hostel/{applicationNo}</h2>
                         <h3 className="text-3xl text-secondary">Personal Details</h3>
@@ -60,7 +60,7 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
                             <dt>Admission No.</dt> <dd>{details.admno}</dd>
                         </p>
                         <p>
-                            <dt>Course</dt> <dd>{details.course}{details.course=="MTech"&&("/"+details.courseother)}</dd>
+                            <dt>Course</dt> <dd>{details.course}{details.course==="MTech"&&("/"+details.courseother)}</dd>
                         </p>
                         <p>
                             <dt>Programme</dt> <dd>{details.programme}</dd>
@@ -93,9 +93,9 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
                         <p>
                             <dt>Government of India Nominee</dt> <dd>{details.goi}</dd>
                         </p>
-                        {(details.goi=="Yes"||details.bpl=="Yes"||details.differentlyabled=="Yes")?"":(
+                        {(details.goi==="Yes"||details.bpl==="Yes"||details.differentlyabled==="Yes")?"":(
                             <>
-                                {(details.sem!="S1"&&details.sem!="S2")?(<p>
+                                {(details.sem!=="S1"&&details.sem!=="S2")?(<p>
                                     <dt>CGPA</dt> <dd>{details.cgpa}</dd>
                                 </p>):
                                 (<p>

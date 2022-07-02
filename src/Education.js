@@ -40,25 +40,25 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                         <div className="grid grid-cols-2 gap-y-2 mt-4">
                             <label for="vehicle1"> BPL: </label>
                             <div>
-                            <input type="radio" id="bplyes" name="bpl" value="Yes" checked={details.bpl=="Yes"} className="ml-2" onChange={()=>{setDetails(d=>({...d,bpl:"Yes"}))}}/>
+                            <input type="radio" id="bplyes" name="bpl" value="Yes" checked={details.bpl==="Yes"} className="ml-2" onChange={()=>{setDetails(d=>({...d,bpl:"Yes"}))}}/>
                             <label htmlFor=""> Yes</label>
-                            <input type="radio" id="bplno" name="bpl" value="No" checked={details.bpl=="No"} className="ml-2" onChange={()=>{setDetails(d=>({...d,bpl:"No"}))}}/>
+                            <input type="radio" id="bplno" name="bpl" value="No" checked={details.bpl==="No"} className="ml-2" onChange={()=>{setDetails(d=>({...d,bpl:"No"}))}}/>
                             <label htmlFor=""> No</label>
                             </div>
                            
                                 <label for="vehicle1"> Differently Abled: </label>
                                 <div>
-                                <input type="radio" id="diffyes" name="diff" value="Yes" className="ml-2" checked={details.differentlyabled=="Yes"} onChange={()=>{setDetails(d=>({...d,differentlyabled:"Yes"}))}}/>
+                                <input type="radio" id="diffyes" name="diff" value="Yes" className="ml-2" checked={details.differentlyabled==="Yes"} onChange={()=>{setDetails(d=>({...d,differentlyabled:"Yes"}))}}/>
                                 <label htmlFor=""> Yes</label>
-                                <input type="radio" id="diffno" name="diff" valur="No" className="ml-2" checked={details.differentlyabled=="No"} onChange={()=>{setDetails(d=>({...d,differentlyabled:"No"}))}}/>
+                                <input type="radio" id="diffno" name="diff" valur="No" className="ml-2" checked={details.differentlyabled==="No"} onChange={()=>{setDetails(d=>({...d,differentlyabled:"No"}))}}/>
                                 <label htmlFor=""> No</label>
                             </div>
                             
                                 <label for="vehicle1"> Government Of India Nominee: </label>
                                 <div>
-                                <input type="radio" id="goiyes" name="goi" value="Yes" className="ml-2" checked={details.goi=="Yes"} onChange={()=>{setDetails(d=>({...d,goi:"Yes"}))}}/>
+                                <input type="radio" id="goiyes" name="goi" value="Yes" className="ml-2" checked={details.goi==="Yes"} onChange={()=>{setDetails(d=>({...d,goi:"Yes"}))}}/>
                                 <label htmlFor=""> Yes</label>
-                                <input type="radio" id="goino" name="goi" value="No" className="ml-2" checked={details.goi=="No"} onChange={()=>{setDetails(d=>({...d,goi:"No"}))}}/>
+                                <input type="radio" id="goino" name="goi" value="No" className="ml-2" checked={details.goi==="No"} onChange={()=>{setDetails(d=>({...d,goi:"No"}))}}/>
                                 <label htmlFor=""> No</label>
                             </div>
                             
@@ -66,9 +66,9 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
 
                     </div>
                     </div>
-                    {(details.goi=="Yes"||details.bpl=="Yes"||details.differentlyabled=="Yes"||details.category=="st"||details.category=="sc")?"":
+                    {(details.goi==="Yes"||details.bpl==="Yes"||details.differentlyabled==="Yes"||details.category==="st"||details.category==="sc")?"":
                     <div className="sm:flex items-end">
-                        {(details.sem!="S1"&&details.sem!="S2")?(<div className="form-field sm:w-4/12 mt-4 sm:mr-2.5">
+                        {(details.sem!=="S1"&&details.sem!=="S2")?(<div className="form-field sm:w-4/12 mt-4 sm:mr-2.5">
                             <label className="form-label mb-1" htmlFor="cgpa">
                                 CGPA (Based on the latest university result)
                             </label>

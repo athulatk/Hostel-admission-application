@@ -112,12 +112,12 @@ export default function Form({ user, logout }) {
         set(ref(db, "users/" + user.uid), {
             ...details,
         })
-            .then(() => {
-                alert("Saved successfully");
-            })
-            .catch(() => {
-                alert("Couldnt save data!");
-            });
+        .then(() => {
+            alert("Saved successfully");
+        })
+        .catch(() => {
+            alert("Couldnt save data!");
+        });
     };
 
     const nextform = (e) => {
@@ -146,9 +146,9 @@ export default function Form({ user, logout }) {
             {/* {details.formSubmitted==true||applicationOpen==false? (
                 applicationOpen==false?<ApplicationClosed/>:<AlreadySubmitted />
             ) : ( */}
-                {details.applicationOpen==false&&details.formSubmitted==false&&(<ApplicationClosed/>)}
-                {details.formSubmitted==true&&(<AlreadySubmitted/>)}
-                {details.formSubmitted==false&&applicationOpen==true&&(<>
+                {details.applicationOpen===false&&details.formSubmitted===false&&(<ApplicationClosed/>)}
+                {details.formSubmitted===true&&(<AlreadySubmitted/>)}
+                {details.formSubmitted===false&&applicationOpen===true&&(<>
                     {formno === 0 || formno === 4 ? (
                         <></>
                     ) : (
@@ -216,7 +216,7 @@ export default function Form({ user, logout }) {
                     )}
 
                     {formno === 3 && (
-                        <GeneratePDF details={details} setDetails={setDetails} scrollTop={scrollTop} setformno={setformno} details={details} user={user} />
+                        <GeneratePDF details={details} setDetails={setDetails} scrollTop={scrollTop} setformno={setformno} user={user} />
                     )}
                 </>)}
             {/* )} */}

@@ -17,8 +17,69 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
     const [courses,setCourses]=useState([{value:"",display:"Select one"}])
     const [displayinput,setDisplayInput]=useState(false)
 
+   
 
     useEffect(() => {
+
+        const ugcourses=[
+            {
+                value:"Civil Engineeringvil",
+                display:"Civil Engineering"
+            },
+            {
+                value:"Computer Science and Engineeringe",
+                display:"Computer Science and Engineering"
+            },
+            {
+                value:"Electronics and Communication Engineeringe",
+                display:"Electronics and Communication Engineering"
+            },
+            {
+                value:"Applied Electronics and Instrumentationi",
+                display:"Applied Electronics and Instrumentation"
+            },
+            {
+                value:"Electrical and Electronics Engineeringe",
+                display:"Electrical and Electronics Engineering"
+            },
+            {
+                value:"Mechanical Engineering",
+                display:"Mechanical Engineering"
+            },
+            {
+                value:"Industrial Engineering",
+                display:"Industrial Engineering"
+            },
+            {
+                value:"Architecture",
+                display:"Architecture"
+            }
+            
+        ]
+    
+        const pgcourses=[
+            {
+                value:"mba",
+                display:"MBA"
+            },
+            {
+                value:"mca",
+                display:"MCA"
+            },
+            
+            {
+                value:"MTech",
+                display:"MTech"
+            },
+            {
+                value:"MArch",
+                display:"MArch"
+            },
+            {
+                value:"MPlan",
+                display:"MPlan"
+            }
+        ]
         if(details.programme==="ug"){
             setCourses(ugcourses)
         }
@@ -35,67 +96,6 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
             setDisplayInput(false)
         }
     }, [details.course, details.programme])
-    
-    
-    const ugcourses=[
-        {
-            value:"Civil Engineeringvil",
-            display:"Civil Engineering"
-        },
-        {
-            value:"Computer Science and Engineeringe",
-            display:"Computer Science and Engineering"
-        },
-        {
-            value:"Electronics and Communication Engineeringe",
-            display:"Electronics and Communication Engineering"
-        },
-        {
-            value:"Applied Electronics and Instrumentationi",
-            display:"Applied Electronics and Instrumentation"
-        },
-        {
-            value:"Electrical and Electronics Engineeringe",
-            display:"Electrical and Electronics Engineering"
-        },
-        {
-            value:"Mechanical Engineering",
-            display:"Mechanical Engineering"
-        },
-        {
-            value:"Industrial Engineering",
-            display:"Industrial Engineering"
-        },
-        {
-            value:"Architecture",
-            display:"Architecture"
-        }
-        
-    ]
-
-    const pgcourses=[
-        {
-            value:"mba",
-            display:"MBA"
-        },
-        {
-            value:"mca",
-            display:"MCA"
-        },
-        
-        {
-            value:"MTech",
-            display:"MTech"
-        },
-        {
-            value:"MArch",
-            display:"MArch"
-        },
-        {
-            value:"MPlan",
-            display:"Mplan"
-        }
-    ]
 
     return (
         <div className="w-11/12 md:w-9/12 mx-auto my-6">
@@ -207,11 +207,9 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                 name="course"
                                 value={details.course}
                                 onChange={updatePersonal}>
-                                {courses.map(item=>{
+                                {courses.map((item, index)=>{
                                     return(
-                                        <>
-                                            <option value={item.value}>{item.display}</option>
-                                        </>
+                                            <option key={index} value={item.value}>{item.display}</option>
                                     )
                                 })}
                             </select>
