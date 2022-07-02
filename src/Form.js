@@ -32,6 +32,7 @@ export default function Form({ user, logout }) {
         parentname:"",
         parentmob:"",
         parentaddress:"",
+        declaration0:false,
         declaration1:false,
         declaration2:false,
         declaration3:false,

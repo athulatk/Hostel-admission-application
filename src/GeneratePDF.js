@@ -24,7 +24,7 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
     };
 
     useEffect(() => {
-        if(details.declaration1===true)
+        if(details.declaration0===true&&details.declaration1===true)
         {
             if(details.goi==="Yes"||details.bpl==="Yes"||details.differentlyabled==="Yes"||details.category==="st"||details.category==="sc")
             {
@@ -146,6 +146,11 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
                         </p>
 
                         <div className="flex flex-row space-x-2 items-center">
+                            <input type="checkbox" name="declaration0" checked={details.declaration0} id="declaration0" value={details.declaration0} onChange={()=>{setDetails(d=>({...d,declaration0:!d.declaration0}))}}/>
+                            <p>I know that I have to download and keep a copy of this pdf to claim that I have applied for hostel admission</p>
+                        </div>
+
+                        <div className="flex flex-row space-x-2 items-center">
                             <input type="checkbox" name="declaration1" checked={details.declaration1} id="declaration1" value={details.declaration1} onChange={()=>{setDetails(d=>({...d,declaration1:!d.declaration1}))}}/>
                             <p>I hereby declare that all the informations given above are true to the best of my knowledge.</p>
                         </div>
@@ -195,9 +200,9 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
                 </button>
 
                 <button
-                    className={"btn-secondary "+(details.declaration===false?"opacity-50":"")}
+                    className={"btn-secondary "+(signed===false?"opacity-50":"")}
                     onClick={() => {
-                        if(details.declaration1===true)
+                        if(details.declaration0===true&&details.declaration1===true)
                         {
                             if(details.goi==="Yes"||details.bpl==="Yes"||details.differentlyabled==="Yes"||details.category==="st"||details.category==="sc")
                             {
