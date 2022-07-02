@@ -1,6 +1,6 @@
 {
   "name": "hostel_application",
-  "homepage": "http://localhost/build/",
+  "homepage": "http://localhost/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
