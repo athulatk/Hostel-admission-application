@@ -38,13 +38,13 @@ function GeneratePDF({ details, setformno, scrollTop, user }) {
                             <dt>Admission No.</dt> <dd>{details.admno}</dd>
                         </p>
                         <p>
-                            <dt>Course</dt> <dd>{details.course}</dd>
+                            <dt>Course</dt> <dd>{details.course}{details.course=="MTech"&&("/"+details.courseother)}</dd>
                         </p>
                         <p>
                             <dt>Programme</dt> <dd>{details.programme}</dd>
                         </p>
                         <p>
-                            <dt>Department</dt> <dd>{details.department}</dd>
+                            <dt>Department</dt> <dd>{details.dept}</dd>
                         </p>
                         <p>
                             <dt>Semester</dt> <dd>{details.sem}</dd>
@@ -91,7 +91,7 @@ function GeneratePDF({ details, setformno, scrollTop, user }) {
                             <dt>Parent/Guardian Mob.No</dt> <dd>{details.parentmob}</dd>
                         </p>
                         <p>
-                            <dt>Parent/Guardian Address</dt> <dd>{details.parentaddress}</dd>
+                            <dt>Parent/Guardian Address</dt> <dd>{details.parentaddr}</dd>
                         </p>
                     </dl>
                       

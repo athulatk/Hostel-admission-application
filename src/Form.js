@@ -22,6 +22,7 @@ export default function Form({ user, logout }) {
         mob: "",
         pemail: "",
         address: "",
+        category:"",
         bpl:"No",
         goi:"No",
         differentlyabled:"No",
@@ -45,7 +46,57 @@ export default function Form({ user, logout }) {
 
     const [formno, setformno] = useState(0);
 
-    const [applicationOpen, setApplicationOpen] = useState(false)
+    const [applicationOpen, setApplicationOpen] = useState(null)
+
+	useEffect(() => {
+        var dbRef = ref(db, "user/" + user.uid);
+
+        onValue(dbRef, (snapshot) => {
+            if (snapshot.exists()) {
+                var arrayObj = {};
+                var arrNames = [
+                    "awards",
+                    "thesis",
+                    "projects1",
+                    "projects2",
+                    "projects3",
+                    "projects4",
+                    "projects5",
+                    "books",
+                    "publications1",
+                    "publications2",
+                    "publications3",
+                    "publications4",
+                    "publications5",
+                    "patents",
+                    "filedPatents",
+                    "referee",
+                ];
+
+                for (var aname of arrNames) {
+                    if (snapshot.val()[aname] === undefined) arrayObj[aname] = [];
+                }
+
+                // console.log(arrayObj)
+
+                setDetails({
+                    ...snapshot.val(),
+                    ...arrayObj,
+                });
+
+                console.log(snapshot.val().formno);
+                setformno(snapshot.val().formno);
+                // console.log({
+                //     ...snapshot.val(),
+                //     ...arrayObj,
+                // });
+            } else {
+                setformno(1);
+            }
+        });
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useEffect(() => {
         var dbRef = ref(db, "application/");
@@ -61,6 +112,8 @@ export default function Form({ user, logout }) {
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+
 
     // useEffect(() => {
     //     setDetails({
@@ -112,11 +165,13 @@ export default function Form({ user, logout }) {
 
     return (
         <>
-            {details.formSubmitted||!applicationOpen ? (
-                applicationOpen?<AlreadySubmitted />:<ApplicationClosed/>
-            ) : (
-                <>
-                    {formno === 0 || formno === 8 ? (
+            {/* {details.formSubmitted==true||applicationOpen==false? (
+                applicationOpen==false?<ApplicationClosed/>:<AlreadySubmitted />
+            ) : ( */}
+                {details.applicationOpen==false&&details.formSubmitted==false&&(<ApplicationClosed/>)}
+                {details.formSubmitted==true&&(<AlreadySubmitted/>)}
+                {details.formSubmitted==false&&applicationOpen==true&&(<>
+                    {formno === 0 || formno === 4 ? (
                         <></>
                     ) : (
                         <>
@@ -185,8 +240,8 @@ export default function Form({ user, logout }) {
                     {formno === 3 && (
                         <GeneratePDF scrollTop={scrollTop} setformno={setformno} details={details} user={user} />
                     )}
-                </>
-            )}
+                </>)}
+            {/* )} */}
         </>
     );
 }

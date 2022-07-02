@@ -28,7 +28,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                         <label className="form-label mb-1" htmlFor="fullname">
                             Category (Select applicables)
                         </label>
-                        <select name="" id="" className="form-control w-full">
+                        <select name="category" id="category" value={details.category} onChange={updatePersonal} className="form-control w-full">
                             <option value="">Select an option</option>
                             <option value="general">General</option>
                             <option value="obc">OBC</option>
@@ -77,6 +77,8 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                                 id="cgpa"
                                 name="cgpa"
                                 type="number"
+                                max={10}
+                                min={0}
                                 value={details.cgpa}
                                 onChange={updatePersonal}
                             />
@@ -96,7 +98,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                         </div>)}
                         <div className="form-field sm:w-4/12 mt-4 sm:mr-2.5">
                             <label className="form-label mb-1" htmlFor="cgpa">
-                                Yearly Family Income
+                                Yearly Family Income (in rupees)
                             </label>
                             <input
                                 className="form-control w-full"

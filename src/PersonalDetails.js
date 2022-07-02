@@ -28,7 +28,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
         if(details.programme==="phd"){
             setCourses([{value:"phd",display:"Ph.D"}])
         }
-        if(details.course==="others"){
+        if(details.course==="MTech"){
             setDisplayInput(true)
         }
         else{
@@ -39,35 +39,35 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
     
     const ugcourses=[
         {
-            value:"civil",
+            value:"Civil Engineeringvil",
             display:"Civil Engineering"
         },
         {
-            value:"cse",
+            value:"Computer Science and Engineeringe",
             display:"Computer Science and Engineering"
         },
         {
-            value:"ece",
+            value:"Electronics and Communication Engineeringe",
             display:"Electronics and Communication Engineering"
         },
         {
-            value:"aei",
+            value:"Applied Electronics and Instrumentationi",
             display:"Applied Electronics and Instrumentation"
         },
         {
-            value:"eee",
-            display:"Electrical and Electronics and Communication"
+            value:"Electrical and Electronics Engineeringe",
+            display:"Electrical and Electronics Engineering"
         },
         {
-            value:"me",
+            value:"Mechanical Engineering",
             display:"Mechanical Engineering"
         },
         {
-            value:"ie",
+            value:"Industrial Engineering",
             display:"Industrial Engineering"
         },
         {
-            value:"ar",
+            value:"Architecture",
             display:"Architecture"
         }
         
@@ -82,9 +82,18 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
             value:"mca",
             display:"MCA"
         },
+        
         {
-            value:"others",
-            display:"Others"
+            value:"MTech",
+            display:"MTech"
+        },
+        {
+            value:"MArch",
+            display:"MArch"
+        },
+        {
+            value:"MPlan",
+            display:"Mplan"
         }
     ]
 
@@ -178,12 +187,14 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                 value={details.dept}
                                 onChange={updatePersonal}>
                                 <option value="">Select an option</option>
-                                <option value="cse">Computer Science and Engineering</option>
-                                <option value="civil">Civil Engineering</option>
-                                <option value="ece">Electronics and Communication Engineering</option>
-                                <option value="eee">Electrical and Electronics Engineering</option>
-                                <option value="me">Mechanical Engineering</option>
-                                <option value="arch">Architecture</option>
+                                <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                                <option value="Civil Engineering">Civil Engineering</option>
+                                <option value="Electronics and Communication Engineering">Electronics and Communication Engineering</option>
+                                <option value="Electrical and Electronics Engineering">Electrical and Electronics Engineering</option>
+                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                <option value="Architecture">Architecture</option>
+                                <option value="MBA">MBA</option>
+                                <option value="MCA">MCA</option>
                             </select>
                         </div>
                         <div className="form-field mt-4">
