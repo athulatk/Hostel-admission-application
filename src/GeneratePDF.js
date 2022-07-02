@@ -118,7 +118,7 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
 
                         <div className="flex flex-row space-x-2 items-center">
                             <input type="checkbox" name="declaration" id="declaration" value={details.declaration} onChange={()=>{setDetails(d=>({...d,declaration:!d.declaration}))}}/>
-                            <p>I hereby declare that all the informations given above are true to the best of my knowledge</p>
+                            <p>I hereby declare that all the informations given above are true to the best of my knowledge. At the time of admission you have to produce a certificate from the concerned authority saying that you belong to the category : {details.category}</p>
                         </div>
                     </dl>
                       
