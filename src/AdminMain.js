@@ -9,6 +9,7 @@ function AdminMain({logout}) {
     const navigate=useNavigate();
     const [list, setList] = useState(null)
     const [applicationOpen, setApplicationOpen] = useState(false)
+    const [enableEdit, setEnableEdit] = useState(false)
 
     useEffect(() => {
         var dbRef = ref(db, "application/");
@@ -17,7 +18,9 @@ function AdminMain({logout}) {
             console.log("called")
             if (snapshot.exists()) {
                 console.log("open = ",snapshot.val())
-                setApplicationOpen(snapshot.val().applicationOpen)
+                console.log(snapshot.val())
+                setApplicationOpen(snapshot.val().applicationOpen.applicationOpen)
+                setEnableEdit(snapshot.val().enableEdit.enableEdit)
             }
         });
 
@@ -25,14 +28,27 @@ function AdminMain({logout}) {
     }, [])
 
     const openApplications=()=>{
-        set(ref(db, "application/"), {
+        set(ref(db, "application/applicationOpen"), {
             "applicationOpen":!applicationOpen
         })
             .then(() => {
                 alert("Saved successfully");
             })
             .catch((e) => {
-                alert("Couldnt jhgj save data!",e);
+                alert("Couldnt save data!",e);
+                console.log(e)
+            });
+    }
+
+    const enableEditFn=()=>{
+        set(ref(db, "application/enableEdit"), {
+            "enableEdit":!enableEdit
+        })
+            .then(() => {
+                alert("Saved successfully");
+            })
+            .catch((e) => {
+                alert("Couldnt save data!",e);
                 console.log(e)
             });
     }
@@ -78,14 +94,27 @@ function AdminMain({logout}) {
                     </button>
                 </div>)}
 
-                {!list&&(<button 
+                {!list&&(
+                <div>
+                    <button 
                     className="btn"
                     onClick={()=>{
                         openApplications()
                     }}
-                >
-                    {applicationOpen?"Close Application":"Open Applications"}
-                </button>)}
+                    >
+                        {applicationOpen?"Close Application":"Open Applications"}
+                    </button>
+
+                    <button 
+                    className="btn"
+                    onClick={()=>{
+                        enableEditFn()
+                    }}
+                    >
+                        {enableEdit?"Disable Editing":"Enable Editing"}
+                    </button>
+                </div>
+                )}
                 
                 {list&&
                     <div className="flex flex-row justify-start w-10/12">

@@ -66,7 +66,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
 
                     </div>
                     </div>
-                    {(details.goi=="Yes"||details.bpl=="Yes"||details.differentlyabled=="Yes")?"":
+                    {(details.goi=="Yes"||details.bpl=="Yes"||details.differentlyabled=="Yes"||details.category=="st"||details.category=="sc")?"":
                     <div className="sm:flex items-end">
                         {(details.sem!="S1"&&details.sem!="S2")?(<div className="form-field sm:w-4/12 mt-4 sm:mr-2.5">
                             <label className="form-label mb-1" htmlFor="cgpa">

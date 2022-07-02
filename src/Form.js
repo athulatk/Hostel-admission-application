@@ -31,7 +31,8 @@ export default function Form({ user, logout }) {
         aincome:"",
         parentname:"",
         parentmob:"",
-        parentaddress:""
+        parentaddress:"",
+        declaration:false
 
     };
 
@@ -53,35 +54,12 @@ export default function Form({ user, logout }) {
 
         onValue(dbRef, (snapshot) => {
             if (snapshot.exists()) {
-                var arrayObj = {};
-                var arrNames = [
-                    "awards",
-                    "thesis",
-                    "projects1",
-                    "projects2",
-                    "projects3",
-                    "projects4",
-                    "projects5",
-                    "books",
-                    "publications1",
-                    "publications2",
-                    "publications3",
-                    "publications4",
-                    "publications5",
-                    "patents",
-                    "filedPatents",
-                    "referee",
-                ];
-
-                for (var aname of arrNames) {
-                    if (snapshot.val()[aname] === undefined) arrayObj[aname] = [];
-                }
+               
 
                 // console.log(arrayObj)
 
                 setDetails({
                     ...snapshot.val(),
-                    ...arrayObj,
                 });
 
                 console.log(snapshot.val().formno);
@@ -99,7 +77,7 @@ export default function Form({ user, logout }) {
     }, []);
 
     useEffect(() => {
-        var dbRef = ref(db, "application/");
+        var dbRef = ref(db, "application/applicationOpen");
 
         onValue(dbRef, (snapshot) => {
             if (snapshot.exists()) {
@@ -176,7 +154,7 @@ export default function Form({ user, logout }) {
                     ) : (
                         <>
                             <h1 className="text-4xl text-tertiary font-light mt-8 text-center">
-                                Hostel Admission Application
+                            Application for Hostel Admission 
                             </h1>
                             {/* <div className="strip">
                                 <div className={formno === 1 ? "text-gray-600" : "text-gray-400"}>
@@ -238,7 +216,7 @@ export default function Form({ user, logout }) {
                     )}
 
                     {formno === 3 && (
-                        <GeneratePDF scrollTop={scrollTop} setformno={setformno} details={details} user={user} />
+                        <GeneratePDF details={details} setDetails={setDetails} scrollTop={scrollTop} setformno={setformno} details={details} user={user} />
                     )}
                 </>)}
             {/* )} */}

@@ -219,7 +219,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                         {displayinput?(<div className="form-field mt-4">
                             <input className="form-control w-12/12"
                                 type="text"
-                                placeholder="Enter the course"
+                                placeholder="Enter the specialization"
                                 id="courseother"
                                 name="courseother"
                                 value={details.courseother}

@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { PDFExport } from "@progress/kendo-react-pdf";
 import { db } from "./firebase_config";
-import { ref, set } from "firebase/database";
+import { onValue, ref, set } from "firebase/database";
 
-function GeneratePDF({ details, setformno, scrollTop, user }) {
+function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
     const pdfExportComponent = React.useRef(null);
+
+    const [applicationNo, setApplicationNo] = useState(-1)
 
     const pushToDatabase = () => {
         // console.log(user);
@@ -12,16 +14,36 @@ function GeneratePDF({ details, setformno, scrollTop, user }) {
             ...details,
             userSignInEmail: user.email,
             formSubmitted: true,
+            applicationNo:applicationNo
+        });
+
+        set(ref(db, "application/applicationNo"), {
+            applicationNo:applicationNo+1
         });
     };
 
+    useEffect(() => {
+        var dbRef = ref(db, "application/applicationNo");
+
+        onValue(dbRef, (snapshot) => {
+            console.log("called")
+            if (snapshot.exists()) {
+                console.log("open = ",snapshot.val())
+                setApplicationNo(snapshot.val().applicationNo)
+            }
+        });
+
+    }, [])
+
+
     return (
         <>
-            <h1 className="text-4xl text-tertiary font-light mt-8 text-center">Application for Hostel Admission</h1>
+            {/* <h1 className="text-4xl text-tertiary font-light mt-8 text-center">Application for Hostel Admission</h1> */}
             <h2 className="text-center mt-1 font-bold text-gray-500">Review your application</h2>
             <div className="w-11/12 md:w-9/12 mx-auto my-8 bg-white shadow-md rounded-xl pb-2">
                 <PDFExport paperSize="A4" scale={0.6} margin="1.3cm" ref={pdfExportComponent}>
                     <dl className="review-section">
+                        <h2>Application CET/Hostel/{applicationNo}</h2>
                         <h3 className="text-3xl text-secondary">Personal Details</h3>
                         <hr className="mt-3 mb-4" />
                         <h4>Personal Details</h4>
@@ -93,6 +115,11 @@ function GeneratePDF({ details, setformno, scrollTop, user }) {
                         <p>
                             <dt>Parent/Guardian Address</dt> <dd>{details.parentaddr}</dd>
                         </p>
+
+                        <div className="flex flex-row space-x-2 items-center">
+                            <input type="checkbox" name="declaration" id="declaration" value={details.declaration} onChange={()=>{setDetails(d=>({...d,declaration:!d.declaration}))}}/>
+                            <p>I hereby declare that all the informations given above are true to the best of my knowledge</p>
+                        </div>
                     </dl>
                       
 

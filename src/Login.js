@@ -25,7 +25,7 @@ function Login({ setUser, onBoarding, setOnBoarding, hasAccount, setHasAccount }
                 <div className="flex-75 flex justify-center items-center">
                     <div className="text-center h-fit">
                         <h2 className="text-3xl font-light text-gray-500 mb-2">College of Engineering Trivandrum</h2>
-                        <h1 className="text-5xl font-semibold text-tertiary mb-8">Hostel Admission Application</h1>
+                        <h1 className="text-5xl font-semibold text-tertiary mb-8">Application for Hostel Admission </h1>
                         <button className="btn-lg" onClick={() => setOnBoarding(!onBoarding)}>
                             Apply Now
                         </button>
