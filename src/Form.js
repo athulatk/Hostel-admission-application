@@ -51,7 +51,7 @@ export default function Form({ user, logout }) {
     const [enableEdit, setEnableEdit] = useState(null)
 
 	useEffect(() => {
-        var dbRef = ref(db, "user/" + user.uid);
+        var dbRef = ref(db, "users/" + user.uid);
 
         onValue(dbRef, (snapshot) => {
             if (snapshot.exists()) {
@@ -63,7 +63,7 @@ export default function Form({ user, logout }) {
                     ...snapshot.val(),
                 });
 
-                console.log(snapshot.val().formno);
+                console.log("valll :",snapshot.val());
                 setformno(snapshot.val().formno);
                 // console.log({
                 //     ...snapshot.val(),
