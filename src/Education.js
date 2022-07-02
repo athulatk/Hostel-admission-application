@@ -94,7 +94,8 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                                 className="form-control w-full"
                                 id="examrank"
                                 name="examrank"
-                                type="examrank"
+                                type="number"
+                                min={0}
                                 value={details.examrank}
                                 onChange={updatePersonal}
                             />
