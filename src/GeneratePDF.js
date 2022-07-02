@@ -147,7 +147,7 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
 
                         <div className="flex flex-row space-x-2 items-center">
                             <input type="checkbox" name="declaration0" checked={details.declaration0} id="declaration0" value={details.declaration0} onChange={()=>{setDetails(d=>({...d,declaration0:!d.declaration0}))}}/>
-                            <p>I know that I have to download and keep a copy of this pdf to claim that I have applied for hostel admission</p>
+                            <p>I know that I have to download and keep a copy of the pdf generated after submitting the form to claim that I have applied for hostel admission</p>
                         </div>
 
                         <div className="flex flex-row space-x-2 items-center">
