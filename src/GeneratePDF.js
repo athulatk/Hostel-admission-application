@@ -144,11 +144,14 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
                 </button>
 
                 <button
-                    className="btn-secondary"
+                    className={"btn-secondary "+(details.declaration===false?"opacity-50":"")}
                     onClick={() => {
-                        pushToDatabase();
-                        if (pdfExportComponent.current) {
-                            pdfExportComponent.current.save();
+                        if(details.declaration===true)
+                        {
+                            pushToDatabase();
+                            if (pdfExportComponent.current) {
+                                pdfExportComponent.current.save();
+                            }
                         }
                     }}
                 >

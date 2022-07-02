@@ -48,6 +48,7 @@ export default function Form({ user, logout }) {
     const [formno, setformno] = useState(0);
 
     const [applicationOpen, setApplicationOpen] = useState(null)
+    const [enableEdit, setEnableEdit] = useState(null)
 
 	useEffect(() => {
         var dbRef = ref(db, "user/" + user.uid);
@@ -83,9 +84,20 @@ export default function Form({ user, logout }) {
             if (snapshot.exists()) {
                 console.log("open = ",snapshot.val())
                 setApplicationOpen(snapshot.val().applicationOpen)
-            } else {
-                setformno(1);
             }
+        });
+
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    useEffect(() => {
+        var dbRef = ref(db, "application/enableEdit");
+
+        onValue(dbRef, (snapshot) => {
+            if (snapshot.exists()) {
+                console.log("open = ",snapshot.val())
+                setEnableEdit(snapshot.val().enableEdit)
+            } 
         });
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -146,9 +158,9 @@ export default function Form({ user, logout }) {
             {/* {details.formSubmitted==true||applicationOpen==false? (
                 applicationOpen==false?<ApplicationClosed/>:<AlreadySubmitted />
             ) : ( */}
-                {details.applicationOpen===false&&details.formSubmitted===false&&(<ApplicationClosed/>)}
-                {details.formSubmitted===true&&(<AlreadySubmitted/>)}
-                {details.formSubmitted===false&&applicationOpen===true&&(<>
+                {applicationOpen===false&&enableEdit===false&&(<ApplicationClosed/>)}
+                {details.formSubmitted===true&&enableEdit===false&&(<AlreadySubmitted/>)}
+                {((details.formSubmitted===false&&applicationOpen===true)||(enableEdit===true))&&(<>
                     {formno === 0 || formno === 4 ? (
                         <></>
                     ) : (
