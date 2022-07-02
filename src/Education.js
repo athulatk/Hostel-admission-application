@@ -38,7 +38,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                             <option value="st">ST</option>
                         </select>
                         <div className="grid grid-cols-2 gap-y-2 mt-4">
-                            <label for="vehicle1"> BPL: </label>
+                            <label htmlFor="vehicle1"> BPL: </label>
                             <div>
                             <input type="radio" id="bplyes" name="bpl" value="Yes" checked={details.bpl==="Yes"} className="ml-2" onChange={()=>{setDetails(d=>({...d,bpl:"Yes"}))}}/>
                             <label htmlFor=""> Yes</label>
@@ -46,7 +46,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                             <label htmlFor=""> No</label>
                             </div>
                            
-                                <label for="vehicle1"> Differently Abled: </label>
+                                <label htmlFor="vehicle1"> Differently Abled: </label>
                                 <div>
                                 <input type="radio" id="diffyes" name="diff" value="Yes" className="ml-2" checked={details.differentlyabled==="Yes"} onChange={()=>{setDetails(d=>({...d,differentlyabled:"Yes"}))}}/>
                                 <label htmlFor=""> Yes</label>
@@ -54,7 +54,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                                 <label htmlFor=""> No</label>
                             </div>
                             
-                                <label for="vehicle1"> Government Of India Nominee: </label>
+                                <label htmlFor="vehicle1"> Government Of India Nominee: </label>
                                 <div>
                                 <input type="radio" id="goiyes" name="goi" value="Yes" className="ml-2" checked={details.goi==="Yes"} onChange={()=>{setDetails(d=>({...d,goi:"Yes"}))}}/>
                                 <label htmlFor=""> Yes</label>
