@@ -165,7 +165,7 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
                             <>
                                 <div className="flex flex-row space-x-2 items-center">
                                     <input type="checkbox" name="declaration3" checked={details.declaration3} id="declaration3" value={details.declaration3} onChange={()=>{setDetails(d=>({...d,declaration3:!d.declaration3}))}}/>
-                                    <p>I know that admssion to the hostel if obtained will be cancelled if I fail to produce a certificate from concerned authorities to prove that my CGPA is {details.cgpa}</p>
+                                    <p>I know that admission to the hostel if obtained will be cancelled if I fail to produce a certificate from concerned authorities to prove that my {details.sem==="S1"||details.sem==="S2"?"entrance exam rank":"CGPA"} is {details.sem==="S1"||details.sem==="S2"?details.examrank:details.cgpa}</p>
                                 </div>
 
                                 <div className="flex flex-row space-x-2 items-center">

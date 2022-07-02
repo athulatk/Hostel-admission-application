@@ -29,7 +29,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                 display:"Civil Engineering"
             },
             {
-                value:"Computer Science and Engineeringe",
+                value:"Computer Science and Engineering",
                 display:"Computer Science and Engineering"
             },
             {

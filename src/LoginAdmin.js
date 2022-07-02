@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import { auth } from "./firebase_config";
-import {  signInWithEmailAndPassword } from "firebase/auth";
+import { auth, db } from "./firebase_config";
+import {   signInWithEmailAndPassword } from "firebase/auth";
 // import { ref, set } from "firebase/database";
 
 function LoginAdmin() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+
+    // const [hasAccount, setHasAccount] = useState(false)
 
     const login = () => {
         signInWithEmailAndPassword(auth, email, password)

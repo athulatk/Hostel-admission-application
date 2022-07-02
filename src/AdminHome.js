@@ -200,7 +200,7 @@ function AdminHome({submitted}) {
                                 <tr key={index} className="odd:bg-white hover:bg-gray-300">
                                     <td className="p-2 border border-gray-400 border-collapse break-all">{index+1}</td>
                                     <td className="p-2 border border-gray-400 border-collapse break-all">{item.fullname}</td>
-                                    <td className="p-2 border border-gray-400 border-collapse break-all">{item.email}</td>
+                                    <td className="p-2 border border-gray-400 border-collapse break-all">{item.pemail}</td>
                                     <td className="p-2 border border-gray-400 border-collapse break-all">{item.dob}</td>
                                     <td className="p-2 border border-gray-400 border-collapse break-all">{item.gender}</td>
                                     <td className="p-2 border border-gray-400 border-collapse break-all">{item.mob}</td>
