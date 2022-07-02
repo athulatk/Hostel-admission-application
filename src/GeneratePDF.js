@@ -7,6 +7,7 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
     const pdfExportComponent = React.useRef(null);
 
     const [applicationNo, setApplicationNo] = useState(-1)
+    const [signed, setSigned] = useState(false)
 
     const pushToDatabase = () => {
         // console.log(user);
@@ -21,6 +22,34 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
             applicationNo:applicationNo+1
         });
     };
+
+    useEffect(() => {
+        if(details.declaration1===true)
+        {
+            if(details.goi==="Yes"||details.bpl==="Yes"||details.differentlyabled==="Yes"||details.category==="st"||details.category==="sc")
+            {
+                if(details.declaration2===true)
+                {
+                    setSigned(true)
+                }
+                else
+                {
+                    setSigned(false)
+                }
+            }
+            else
+            {
+                if(details.declaration3===true&&details.declaration4===true)
+                {
+                    setSigned(true)
+                }
+                else{
+                    setSigned(false)
+                }
+            }
+        }
+    }, [details])
+    
 
     useEffect(() => {
         var dbRef = ref(db, "application/applicationNo");
@@ -117,9 +146,31 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
                         </p>
 
                         <div className="flex flex-row space-x-2 items-center">
-                            <input type="checkbox" name="declaration" id="declaration" value={details.declaration} onChange={()=>{setDetails(d=>({...d,declaration:!d.declaration}))}}/>
-                            <p>I hereby declare that all the informations given above are true to the best of my knowledge. At the time of admission you have to produce a certificate from the concerned authority saying that you belong to the category : {details.category}</p>
+                            <input type="checkbox" name="declaration1" checked={details.declaration1} id="declaration1" value={details.declaration1} onChange={()=>{setDetails(d=>({...d,declaration1:!d.declaration1}))}}/>
+                            <p>I hereby declare that all the informations given above are true to the best of my knowledge.</p>
                         </div>
+
+                        {(details.goi==="Yes"||details.bpl==="Yes"||details.differentlyabled==="Yes"||details.category==="st"||details.category==="sc")?(<div className="flex flex-row space-x-2 items-center">
+                            <input type="checkbox" name="declaration2" checked={details.declaration2} id="declaration2" value={details.declaration2} onChange={()=>{setDetails(d=>({...d,declaration2:!d.declaration2}))}}/>
+                            <p>I know that admssion to the hostel if obtained will be cancelled if I fail to produce a certificate from concerned authorities to prove that I belong to the category {details.category==="sc"?"SC":(details.category==="st"?"ST":(details.goi==="Yes"?"GOI":(details.bpl==="Yes"?"BPL":(details.differentlyabled==="Yes"?"Differently Abled":""))))}</p>
+                        </div>):(
+                            <>
+                                <div className="flex flex-row space-x-2 items-center">
+                                    <input type="checkbox" name="declaration3" checked={details.declaration3} id="declaration3" value={details.declaration3} onChange={()=>{setDetails(d=>({...d,declaration3:!d.declaration3}))}}/>
+                                    <p>I know that admssion to the hostel if obtained will be cancelled if I fail to produce a certificate from concerned authorities to prove that my CGPA is {details.cgpa}</p>
+                                </div>
+
+                                <div className="flex flex-row space-x-2 items-center">
+                                    <input type="checkbox" name="declaration4" checked={details.declaration4} id="declaration4" value={details.declaration4} onChange={()=>{setDetails(d=>({...d,declaration4:!d.declaration4}))}}/>
+                                    <p>I know that admssion to the hostel if obtained will be cancelled if I fail to produce a certificate from concerned authorities to prove that my annual family income is {details.aincome}</p>
+                                </div>
+                            </>
+                        )}
+
+                        {signed&&(<>
+                            <p>S/d</p>
+                            <p>{details.fullname}</p>
+                        </>)}
                     </dl>
                       
 
@@ -146,11 +197,27 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
                 <button
                     className={"btn-secondary "+(details.declaration===false?"opacity-50":"")}
                     onClick={() => {
-                        if(details.declaration===true)
+                        if(details.declaration1===true)
                         {
-                            pushToDatabase();
-                            if (pdfExportComponent.current) {
-                                pdfExportComponent.current.save();
+                            if(details.goi==="Yes"||details.bpl==="Yes"||details.differentlyabled==="Yes"||details.category==="st"||details.category==="sc")
+                            {
+                                if(details.declaration2===true)
+                                {
+                                    pushToDatabase();
+                                    if (pdfExportComponent.current) {
+                                        pdfExportComponent.current.save();
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                if(details.declaration3===true&&details.declaration4===true)
+                                {
+                                    pushToDatabase();
+                                    if (pdfExportComponent.current) {
+                                        pdfExportComponent.current.save();
+                                    }
+                                }
                             }
                         }
                     }}
