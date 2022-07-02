@@ -20,7 +20,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
         <div className="w-11/12 md:w-9/12 mx-auto my-6">
         <hr className="my-4" />
 
-        <form className="mt-7 mb-4 w-12/12">
+        <form className="mt-7 mb-4 w-12/12" onSubmit={saveInfoNext}>
             <div className="w-12/12">
                 <div className="form-card rounded-xl sm:rounded-none" style={{width:'100%'}}>
                 <div className="sm:flex items-end">
@@ -28,7 +28,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                         <label className="form-label mb-1" htmlFor="fullname">
                             Category (Select applicables)
                         </label>
-                        <select name="category" id="category" value={details.category} onChange={updatePersonal} className="form-control w-full">
+                        <select required name="category" id="category" value={details.category} onChange={updatePersonal} className="form-control w-full">
                             <option value="">Select an option</option>
                             <option value="general">General</option>
                             <option value="obc">OBC</option>
@@ -73,12 +73,14 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                                 CGPA (Based on the latest university result)
                             </label>
                             <input
+                                required
                                 className="form-control w-full"
                                 id="cgpa"
                                 name="cgpa"
                                 type="number"
-                                max={10}
-                                min={0}
+                                step={0.01}
+                                max={10.00}
+                                min={0.00}
                                 value={details.cgpa}
                                 onChange={updatePersonal}
                             />
@@ -88,6 +90,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                                 Entrance Exam Rank
                             </label>
                             <input
+                                required
                                 className="form-control w-full"
                                 id="examrank"
                                 name="examrank"
@@ -101,6 +104,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                                 Yearly Family Income (in rupees)
                             </label>
                             <input
+                                required
                                 className="form-control w-full"
                                 id="famincome"
                                 name="aincome"
@@ -118,6 +122,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                                     Parent/Guardian Name
                                 </label>
                                 <input
+                                    required
                                     className="form-control w-full"
                                     type="text"
                                     id="parentname"
@@ -131,6 +136,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                                     Parent/Guardian Mobile Number
                                 </label>
                                 <input
+                                    required
                                     className="form-control w-full"
                                     type="tel"
                                     id="parentmob"
@@ -146,6 +152,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                                 Parent/Guardian Address
                             </label>
                             <input
+                                required
                                 className="form-control w-full"
                                 type="textarea"
                                 id="parentaddr"
@@ -166,9 +173,7 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                         <button className="btn-outline" onClick={saveInfo}>
                             Save
                         </button>
-                        <button onClick={saveInfoNext} className="btn-secondary">
-                            Next
-                        </button>
+                        <input type="submit" value="Next" className="btn-secondary" />
                     </div>
                 </div>
         </form>

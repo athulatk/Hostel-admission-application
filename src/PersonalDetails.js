@@ -12,6 +12,8 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
         // var newDetails={...fullDetails,...personal}
         // setFullDetails(newDetails)
         nextform(e);
+
+        return false
     }
 
     const [courses,setCourses]=useState([{value:"",display:"Select one"}])
@@ -101,7 +103,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
         <div className="w-11/12 md:w-9/12 mx-auto my-6">
             <hr className="my-4" />
 
-            <form className="mt-7 mb-4 w-12/12">
+            <form className="mt-7 mb-4 w-12/12"  onSubmit={saveInfoNext}>
                 <div className="w-12/12">
                     <div className="form-card rounded-xl sm:rounded-none" style={{width:'100%'}}>
                     <h3 className="section-label pr-2">Primary Details</h3>
@@ -111,6 +113,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                 Full Name
                             </label>
                             <input
+                                required
                                 className="form-control sm:w-96"
                                 id="fullname"
                                 name="fullname"
@@ -122,7 +125,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                             <label className="form-label mb-1" htmlFor="fullname">
                                 Gender
                             </label>
-                            <select name="gender" id="" value={details.gender} onChange={updatePersonal} className="form-control">
+                            <select required name="gender" id="" value={details.gender} onChange={updatePersonal} className="form-control">
                                 <option value="">Select an option</option>
                                 <option value="male">Male</option>
                                 <option value="female">Female</option>
@@ -135,6 +138,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                     Admission No.
                                 </label>
                                 <input
+                                    required
                                     className="form-control w-full"
                                     id="admno"
                                     type="text"
@@ -150,6 +154,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                     Date of Birth
                                 </label>
                                 <input
+                                    required
                                     className="form-control sm:w-full"
                                     id="dob"
                                     name="dob"
@@ -165,6 +170,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                 Programme
                             </label>
                             <select className="form-control w-64"
+                                required
                                 type="text"
                                 id="programme"
                                 name="programme"
@@ -181,6 +187,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                 Department
                             </label>
                             <select className="form-control w-12/12"
+                                required
                                 type="text"
                                 id="dept"
                                 name="dept"
@@ -202,6 +209,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                 Course
                             </label>
                             <select className="form-control w-12/12"
+                                required
                                 type="text"
                                 id="course"
                                 name="course"
@@ -216,6 +224,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                         </div>
                         {displayinput?(<div className="form-field mt-4">
                             <input className="form-control w-12/12"
+                                required
                                 type="text"
                                 placeholder="Enter the specialization"
                                 id="courseother"
@@ -229,7 +238,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                 <label className="form-label mb-1" htmlFor="gender">
                                     Semester
                                 </label>
-                                <select className="form-control" name="sem" id="sem" value={details.sem} onChange={updatePersonal}>
+                                <select required className="form-control" name="sem" id="sem" value={details.sem} onChange={updatePersonal}>
                                     <option value="">Select an option</option>
                                     <option value="S1">S1</option>
                                     <option value="S2">S2</option>
@@ -256,6 +265,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                     Mobile/Phone Number
                                 </label>
                                 <input
+                                    required
                                     className="form-control w-full"
                                     type="tel"
                                     id="mob"
@@ -269,6 +279,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                     Primary Email Address
                                 </label>
                                 <input
+                                    required
                                     className="form-control w-full"
                                     type="email"
                                     id="pemail"
@@ -283,6 +294,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                 Residential Address
                             </label>
                             <input
+                                required
                                 className="form-control w-full"
                                 type="textarea"
                                 id="address"
@@ -298,9 +310,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                     <button className="btn-outline" onClick={saveInfo}>
                         Save
                     </button>
-                    <button className="btn-secondary" onClick={saveInfoNext}>
-                        Next
-                    </button>
+                    <input type="submit" value="Next" className="btn-secondary"/>
                 </div>
             </form>
         </div>
