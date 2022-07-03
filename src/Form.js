@@ -162,7 +162,7 @@ export default function Form({ user, logout }) {
             {/* {details.formSubmitted==true||applicationOpen==false? (
                 applicationOpen==false?<ApplicationClosed/>:<AlreadySubmitted />
             ) : ( */}
-                {applicationOpen===false&&enableEdit===false&&(<ApplicationClosed/>)}
+                {details.formSubmitted===false&&applicationOpen===false&&enableEdit===false&&(<ApplicationClosed/>)}
                 {details.formSubmitted===true&&enableEdit===false&&(<AlreadySubmitted/>)}
                 {((details.formSubmitted===false&&applicationOpen===true)||(enableEdit===true))&&(<>
                     {formno === 0 || formno === 4 ? (

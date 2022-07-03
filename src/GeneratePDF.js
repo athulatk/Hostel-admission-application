@@ -125,7 +125,7 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
                         <p>
                             <dt>Government of India Nominee</dt> <dd>{details.goi}</dd>
                         </p>
-                        {(details.goi==="Yes"||details.bpl==="Yes"||details.differentlyabled==="Yes")?"":(
+                        {(details.goi==="Yes"||details.bpl==="Yes"||details.differentlyabled==="Yes"||details.category==="st"||details.category==="sc")?"":(
                             <>
                                 {(details.sem!=="S1"&&details.sem!=="S2")?(<p>
                                     <dt>CGPA</dt> <dd>{details.cgpa}</dd>
