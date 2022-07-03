@@ -10,7 +10,7 @@ function GeneratePDF({ setformno, scrollTop, user, details, setDetails }) {
     const [signed, setSigned] = useState(false)
 
     const pushToDatabase = () => {
-        // console.log(user);
+        console.log(user);
         set(ref(db, "users/" + user.admNoKey), {
             ...details,
             userSignInEmail: user.email,
