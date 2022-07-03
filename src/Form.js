@@ -55,7 +55,7 @@ export default function Form({ user, logout }) {
     const [enableEdit, setEnableEdit] = useState(null)
 
 	useEffect(() => {
-        var dbRef = ref(db, "users/" + user.uid);
+        var dbRef = ref(db, "users/" + user.admNoKey);
 
         onValue(dbRef, (snapshot) => {
             if (snapshot.exists()) {
