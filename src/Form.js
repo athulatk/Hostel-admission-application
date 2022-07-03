@@ -150,7 +150,7 @@ export default function Form({ user, logout }) {
     const prevform = () => {
         setformno(formno - 1);
 
-        set(ref(db, "users/" + user.uid), {
+        set(ref(db, "users/" + user.admNoKey), {
             ...details,
             formno: formno - 1,
         });
