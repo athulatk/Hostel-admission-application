@@ -25,7 +25,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
 
         const ugcourses=[
             {
-                value:"Civil Engineeringvil",
+                value:"Civil Engineering",
                 display:"Civil Engineering"
             },
             {
@@ -33,15 +33,15 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                 display:"Computer Science and Engineering"
             },
             {
-                value:"Electronics and Communication Engineeringe",
+                value:"Electronics and Communication Engineering",
                 display:"Electronics and Communication Engineering"
             },
             {
-                value:"Applied Electronics and Instrumentationi",
+                value:"Applied Electronics and Instrumentation",
                 display:"Applied Electronics and Instrumentation"
             },
             {
-                value:"Electrical and Electronics Engineeringe",
+                value:"Electrical and Electronics Engineering",
                 display:"Electrical and Electronics Engineering"
             },
             {
