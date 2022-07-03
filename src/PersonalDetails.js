@@ -215,6 +215,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                 name="course"
                                 value={details.course}
                                 onChange={updatePersonal}>
+                                <option value="">Select an option</option>
                                 {courses.map((item, index)=>{
                                     return(
                                             <option key={index} value={item.value}>{item.display}</option>

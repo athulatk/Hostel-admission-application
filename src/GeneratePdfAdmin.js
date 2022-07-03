@@ -3,6 +3,7 @@ import { PDFExport } from "@progress/kendo-react-pdf";
 import TitleSVG from "./TitleSVG";
 import {useLocation} from 'react-router-dom'
 
+
 function GeneratePDFAdmin() {
     const pdfExportComponent = React.useRef(null);
     const [details, setDetails] = useState(null)
