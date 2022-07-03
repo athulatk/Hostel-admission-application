@@ -125,7 +125,7 @@ export default function Form({ user, logout }) {
 
     const saveInfo = (e) => {
         e.preventDefault();
-        set(ref(db, "users/" + user.uid), {
+        set(ref(db, "users/" + user.admNoKey), {
             ...details,
         })
         .then(() => {
@@ -141,7 +141,7 @@ export default function Form({ user, logout }) {
 
         setformno(formno + 1);
 
-        set(ref(db, "users/" + user.uid), {
+        set(ref(db, "users/" + user.admNoKey), {
             ...details,
             formno: formno + 1,
         });

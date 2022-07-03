@@ -4,13 +4,14 @@ import TitleSVG from "./TitleSVG";
 import Form from "./Form";
 import Login from "./Login";
 import AdminPanel from "./AdminPanel"
-import { auth } from "./firebase_config";
+import { auth, db } from "./firebase_config";
 import {
     BrowserRouter,
     Routes,
     Route,
   } from "react-router-dom";
 import GeneratePDFAdmin from "./GeneratePdfAdmin";
+import { onValue, ref } from "firebase/database";
 
 export default function App() {
     const [onBoarding, setOnBoarding] = useState(true);
@@ -21,7 +22,18 @@ export default function App() {
     useEffect(() => {
         auth.onAuthStateChanged((user) => {
             if (user) {
-                setUser(user);
+
+                // console.log(user)
+                var dbRef = ref(db, "uidSignInDetails/" + user.uid);
+
+                onValue(dbRef, (snapshot) => {
+                    if (snapshot.exists()) {
+                    // console.log(snapshot.val())
+                       user.admNoKey=snapshot.val().admNo
+                    }
+                    // console.log(user)
+                    setUser(user); 
+                });
             } else {
                 setUser(null);
             }

@@ -1,22 +1,83 @@
 import React, { useState } from "react";
-import { auth } from "./firebase_config";
+import { auth, db } from "./firebase_config";
 import { signInWithEmailAndPassword, createUserWithEmailAndPassword } from "firebase/auth";
+import { get, ref, set } from "firebase/database";
 
 function Login({ setUser, onBoarding, setOnBoarding, hasAccount, setHasAccount }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [admNo, setAdmNo] = useState("")
     const [error, setError] = useState("");
 
     const login = () => {
-        signInWithEmailAndPassword(auth, email, password).catch((err) => {
-            setError(err.message);
-        });
+        if(email.includes("@")) //sign in with email
+        {
+            signInWithEmailAndPassword(auth, email, password).then((userData=>{
+                
+            })).catch((err) => {
+                setError(err.message);
+            });
+        }
+        else //sign in wih admission number
+        {
+            var dbRef = ref(db, "uidSignInDetails/");
+            var admNoFound=0
+            get(dbRef).then(snapshot=>{
+                console.log(snapshot.val())
+
+                var data={...snapshot.val()}
+                for(var uid in data)
+                {
+                    if(data[uid].admNo===email)
+                    {
+                        admNoFound=1
+                        signInWithEmailAndPassword(auth, data[uid].email, password).then((userData=>{
+                
+                        })).catch((err) => {
+                            setError(err.message);
+                        });
+                        break
+                    }
+                }
+
+                if(admNoFound===0)
+                    setError("User with admission number not found")
+            })
+        }
     };
 
     const signup = () => {
-        createUserWithEmailAndPassword(auth, email, password).catch((err) => {
-            setError(err.message);
-        });
+        var dbRef = ref(db, "uidSignInDetails/");
+        var admNoFound=0
+        get(dbRef).then(snapshot=>{
+            console.log(snapshot.val())
+
+            var data={...snapshot.val()}
+            for(var uid in data)
+            {
+                if(data[uid].admNo===admNo)
+                {
+                    admNoFound=1
+                    setError("User with admission number already registered")
+                    break
+                }
+            }
+
+            if(admNoFound===0)
+            {
+                createUserWithEmailAndPassword(auth, email, password).then((userData)=>{
+                    console.log(userData.user.uid)
+                    
+                    set(ref(db, "uidSignInDetails/" + userData.user.uid), {
+                        admNo:admNo,
+                        email:email
+                    });
+                }).catch((err) => {
+                    setError(err.message);
+                });
+            }
+        })
+
     };
 
     return (
@@ -34,22 +95,39 @@ function Login({ setUser, onBoarding, setOnBoarding, hasAccount, setHasAccount }
             ) : (
                 <div className="bg-white shadow-md text-center h-fit w-96 p-8 rounded-xl">
                     {hasAccount ? (
-                        <h2 class="text-2xl font-extrabold text-gray-500 pb-4">Log in to your account</h2>
+                        <h2 className="text-2xl font-extrabold text-gray-500 pb-4">Log in to your account</h2>
                     ) : (
-                        <h2 class="text-2xl font-extrabold text-gray-500 pb-4">Sign up to apply</h2>
+                        <h2 className="text-2xl font-extrabold text-gray-500 pb-4">Sign up to apply</h2>
                     )}
                     <label className="form-label mb-1" htmlFor="email">
-                        Email address
+                        Email address {hasAccount&&"/ Admission No"}
                     </label>
                     <input
                         className="form-control block w-full mb-3"
-                        type="email"
+                        type="text"
                         required
                         value={email}
                         onChange={(e) => {
+                            setError("")
                             setEmail(e.target.value);
                         }}
                     />
+
+                   {!hasAccount&&(<>
+                        <label className="form-label mb-1" htmlFor="email">
+                            Admission No
+                        </label>
+                        <input
+                            className="form-control block w-full mb-3"
+                            type="text"
+                            required
+                            value={admNo}
+                            onChange={(e) => {
+                                setError("")
+                                setAdmNo(e.target.value);
+                            }}
+                        />
+                    </>)}
 
                     <label className="form-label mb-1" htmlFor="password">
                         Password
@@ -60,6 +138,7 @@ function Login({ setUser, onBoarding, setOnBoarding, hasAccount, setHasAccount }
                         required
                         value={password}
                         onChange={(e) => {
+                            setError("")
                             setPassword(e.target.value);
                         }}
                     />
