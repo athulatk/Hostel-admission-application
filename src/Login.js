@@ -93,7 +93,7 @@ function Login({ setUser, onBoarding, setOnBoarding, hasAccount, setHasAccount }
                     </div>
                 </div>
             ) : (
-                <div className="bg-white shadow-md text-center h-fit w-96 p-8 rounded-xl">
+                <div className="bg-white shadow-md text-center h-fit w-96 p-8 rounded-xl my-6">
                     {hasAccount ? (
                         <h2 className="text-2xl font-extrabold text-gray-500 pb-4">Log in to your account</h2>
                     ) : (
