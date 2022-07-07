@@ -37,25 +37,26 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                             <option value="sc">SC</option>
                             <option value="st">ST</option>
                         </select>
+
                         <div className="grid grid-cols-2 gap-y-2 mt-4">
                             <label htmlFor="vehicle1"> BPL: </label>
                             <div>
-                            <input type="radio" id="bplyes" name="bpl" value="Yes" checked={details.bpl==="Yes"} className="ml-2" onChange={()=>{setDetails(d=>({...d,bpl:"Yes"}))}}/>
-                            <label htmlFor=""> Yes</label>
-                            <input type="radio" id="bplno" name="bpl" value="No" checked={details.bpl==="No"} className="ml-2" onChange={()=>{setDetails(d=>({...d,bpl:"No"}))}}/>
-                            <label htmlFor=""> No</label>
+                                <input type="radio" id="bplyes" name="bpl" value="Yes" checked={details.bpl==="Yes"} className="ml-2" onChange={()=>{setDetails(d=>({...d,bpl:"Yes"}))}}/>
+                                <label htmlFor=""> Yes</label>
+                                <input type="radio" id="bplno" name="bpl" value="No" checked={details.bpl==="No"} className="ml-2" onChange={()=>{setDetails(d=>({...d,bpl:"No"}))}}/>
+                                <label htmlFor=""> No</label>
                             </div>
                            
-                                <label htmlFor="vehicle1"> Differently Abled: </label>
-                                <div>
+                            <label htmlFor="vehicle1"> Differently Abled: </label>
+                            <div>
                                 <input type="radio" id="diffyes" name="diff" value="Yes" className="ml-2" checked={details.differentlyabled==="Yes"} onChange={()=>{setDetails(d=>({...d,differentlyabled:"Yes"}))}}/>
                                 <label htmlFor=""> Yes</label>
-                                <input type="radio" id="diffno" name="diff" valur="No" className="ml-2" checked={details.differentlyabled==="No"} onChange={()=>{setDetails(d=>({...d,differentlyabled:"No"}))}}/>
+                                <input type="radio" id="diffno" name="diff" value="No" className="ml-2" checked={details.differentlyabled==="No"} onChange={()=>{setDetails(d=>({...d,differentlyabled:"No"}))}}/>
                                 <label htmlFor=""> No</label>
                             </div>
                             
-                                <label htmlFor="vehicle1"> Government Of India Nominee: </label>
-                                <div>
+                            <label htmlFor="vehicle1"> Government Of India Nominee: </label>
+                            <div>
                                 <input type="radio" id="goiyes" name="goi" value="Yes" className="ml-2" checked={details.goi==="Yes"} onChange={()=>{setDetails(d=>({...d,goi:"Yes"}))}}/>
                                 <label htmlFor=""> Yes</label>
                                 <input type="radio" id="goino" name="goi" value="No" className="ml-2" checked={details.goi==="No"} onChange={()=>{setDetails(d=>({...d,goi:"No"}))}}/>
@@ -68,38 +69,144 @@ function Education({ nextform, prevform, details, setDetails, saveInfo }) {
                     </div>
                     {(details.goi==="Yes"||details.bpl==="Yes"||details.differentlyabled==="Yes"||details.category==="st"||details.category==="sc")?"":
                     <div className="sm:flex items-end">
-                        {(details.sem!=="S1"&&details.sem!=="S2")?(<div className="form-field sm:w-4/12 mt-4 sm:mr-2.5">
-                            <label className="form-label mb-1" htmlFor="cgpa">
-                                CGPA (Based on the latest university result)
-                            </label>
-                            <input
-                                required
-                                className="form-control w-full"
-                                id="cgpa"
-                                name="cgpa"
-                                type="number"
-                                step={0.01}
-                                max={10.00}
-                                min={0.00}
-                                value={details.cgpa}
-                                onChange={updatePersonal}
-                            />
-                        </div>):
-                        (<div className="form-field sm:w-4/12 mt-4 sm:mr-2.5">
-                            <label className="form-label mb-1" htmlFor="cgpa">
-                                Entrance Exam Rank
-                            </label>
-                            <input
-                                required
-                                className="form-control w-full"
-                                id="examrank"
-                                name="examrank"
-                                type="number"
-                                min={0}
-                                value={details.examrank}
-                                onChange={updatePersonal}
-                            />
-                        </div>)}
+                        {(details.sem!=="S1"&&details.sem!=="S2")
+                            ?
+                            (
+                                ((details.sem==="S3"||details.sem==="S4")&&details.lateral==="Yes")
+                                ?
+                                (
+                                    <div className="form-field sm:w-4/12 mt-4 sm:mr-2.5">
+                                                <label className="form-label mb-1" htmlFor="cgpa">
+                                                    DTE Rank
+                                                </label>
+                                                <input
+                                                    required
+                                                    className="form-control w-full"
+                                                    id="examrank"
+                                                    name="examrank"
+                                                    type="number"
+                                                    min={0}
+                                                    value={details.examrank}
+                                                    onChange={updatePersonal}
+                                                />
+                                            </div>
+                                )
+                                :    
+                                (<div className="form-field sm:w-4/12 mt-4 sm:mr-2.5">
+                                    <label className="form-label mb-1" htmlFor="cgpa">
+                                        CGPA (Based on the latest university result)
+                                    </label>
+                                    <input
+                                        required
+                                        className="form-control w-full"
+                                        id="cgpa"
+                                        name="cgpa"
+                                        type="number"
+                                        step={0.01}
+                                        max={10.00}
+                                        min={0.00}
+                                        value={details.cgpa}
+                                        onChange={updatePersonal}
+                                    />
+                                </div>)
+                            )
+                            :
+                            ((details.programme==="pg"&&(details.course==="MTech"||details.course==="MPlan"))
+                                ?
+                                (
+                                    <div className="form-field sm:w-4/12 mt-4 sm:mr-2.5">
+                                        <label className="form-label mb-1" htmlFor="cgpa">
+                                            DTE Rank
+                                        </label>
+                                        <input
+                                            required
+                                            className="form-control w-full"
+                                            id="examrank"
+                                            name="examrank"
+                                            type="number"
+                                            min={0}
+                                            value={details.examrank}
+                                            onChange={updatePersonal}
+                                        />
+                                    </div>
+                                )
+                                :
+                                (
+                                    (details.programme==="pg"&&details.course==="mca")
+                                    ?
+                                    (
+                                        <div className="form-field sm:w-4/12 mt-4 sm:mr-2.5">
+                                            <label className="form-label mb-1" htmlFor="cgpa">
+                                                LBS Rank
+                                            </label>
+                                            <input
+                                                required
+                                                className="form-control w-full"
+                                                id="examrank"
+                                                name="examrank"
+                                                type="number"
+                                                min={0}
+                                                value={details.examrank}
+                                                onChange={updatePersonal}
+                                            />
+                                        </div>
+                                    )
+                                    :
+                                    (details.programme==="pg"&&details.course==="mba")
+                                    ?
+                                    (
+                                        <div className="flex flex-col space-y-2 mt-3">
+                                            <div className="form-field sm:w-10/12">
+                                                <label className="form-label mb-1 w-full" htmlFor="fullname">
+                                                    Exam Type
+                                                </label>
+                                                <select required name="examname" id="" value={details.examname} onChange={updatePersonal} className="form-control ">
+                                                    <option value="">Select an option</option>
+                                                    <option value="CAT">CAT</option>
+                                                    <option value="CMAT">CMAT</option>
+                                                    <option value="KMAT">KMAT</option>
+                                                </select>
+                                            </div>
+                                        
+                                            <div className="form-field sm:w-10/12 mt-4 sm:mr-2.5">
+                                                <label className="form-label mb-1 whitespace-nowrap" htmlFor="cgpa">
+                                                    Rank
+                                                </label>
+                                                <input
+                                                    required
+                                                    className="form-control w-full"
+                                                    id="examrank"
+                                                    name="examrank"
+                                                    type="number"
+                                                    min={0}
+                                                    value={details.examrank}
+                                                    onChange={updatePersonal}
+                                                />
+                                            </div>
+                                        </div>
+                                    )
+                                    :
+                                    (
+                                        <div className="form-field sm:w-4/12 mt-4 sm:mr-2.5">
+                                            <label className="form-label mb-1" htmlFor="cgpa">
+                                                Entrance Exam Rank
+                                            </label>
+                                            <input
+                                                required
+                                                className="form-control w-full"
+                                                id="examrank"
+                                                name="examrank"
+                                                type="number"
+                                                min={0}
+                                                value={details.examrank}
+                                                onChange={updatePersonal}
+                                            />
+                                        </div>
+                                    )
+                                )
+            
+                            )
+                        }
                         <div className="form-field sm:w-4/12 mt-4 sm:mr-2.5">
                             <label className="form-label mb-1" htmlFor="cgpa">
                                 Yearly Family Income (in rupees)

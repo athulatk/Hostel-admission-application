@@ -19,6 +19,7 @@ export default function Form({ user, logout }) {
         programme:"",
         dept: "",
         sem: "",
+        lateral:"No",
         mob: "",
         pemail: "",
         address: "",
@@ -27,6 +28,7 @@ export default function Form({ user, logout }) {
         goi:"No",
         differentlyabled:"No",
         cgpa:"",
+        examname:"",
         examrank:"",
         aincome:"",
         parentname:"",
@@ -163,7 +165,7 @@ export default function Form({ user, logout }) {
                 applicationOpen==false?<ApplicationClosed/>:<AlreadySubmitted />
             ) : ( */}
                 {details.formSubmitted===false&&applicationOpen===false&&enableEdit===false&&(<ApplicationClosed/>)}
-                {details.formSubmitted===true&&enableEdit===false&&(<AlreadySubmitted/>)}
+                {details.formSubmitted===true&&enableEdit===false&&(<AlreadySubmitted details={details} />)}
                 {((details.formSubmitted===false&&applicationOpen===true)||(enableEdit===true))&&(<>
                     {formno === 0 || formno === 4 ? (
                         <></>

@@ -104,27 +104,27 @@ function GeneratePDFAdmin() {
                         </p>
 
                         <div className="flex flex-row space-x-2 items-center">
-                            <input type="checkbox" name="declaration0" checked={details.declaration0} id="declaration0" value={details.declaration0} onChange={()=>{setDetails(d=>({...d,declaration0:!d.declaration0}))}}/>
+                            <input type="checkbox" name="declaration0" checked={details.declaration0} id="declaration0" value={details.declaration0} disabled/>
                             <p>I know that I have to download and keep a copy of the pdf generated automatically after submitting the form to claim that I have applied for hostel admission</p>
                         </div>
 
                         <div className="flex flex-row space-x-2 items-center">
-                            <input type="checkbox" name="declaration1" checked={details.declaration1} id="declaration1" value={details.declaration1} onChange={()=>{setDetails(d=>({...d,declaration1:!d.declaration1}))}}/>
+                            <input type="checkbox" name="declaration1" checked={details.declaration1} id="declaration1" value={details.declaration1} disabled />
                             <p>I hereby declare that all the informations given above are true to the best of my knowledge.</p>
                         </div>
 
                         {(details.goi==="Yes"||details.bpl==="Yes"||details.differentlyabled==="Yes"||details.category==="st"||details.category==="sc")?(<div className="flex flex-row space-x-2 items-center">
-                            <input type="checkbox" name="declaration2" checked={details.declaration2} id="declaration2" value={details.declaration2} onChange={()=>{setDetails(d=>({...d,declaration2:!d.declaration2}))}}/>
+                            <input type="checkbox" name="declaration2" checked={details.declaration2} id="declaration2" value={details.declaration2} disabled />
                             <p>I know that admssion to the hostel if obtained will be cancelled if I fail to produce a certificate from concerned authorities to prove that I belong to the category {details.category==="sc"?"SC":(details.category==="st"?"ST":(details.goi==="Yes"?"GOI":(details.bpl==="Yes"?"BPL":(details.differentlyabled==="Yes"?"Differently Abled":""))))}</p>
                         </div>):(
                             <>
                                 <div className="flex flex-row space-x-2 items-center">
-                                    <input type="checkbox" name="declaration3" checked={details.declaration3} id="declaration3" value={details.declaration3} onChange={()=>{setDetails(d=>({...d,declaration3:!d.declaration3}))}}/>
+                                    <input type="checkbox" name="declaration3" checked={details.declaration3} id="declaration3" value={details.declaration3} disabled />
                                     <p>I know that admission to the hostel if obtained will be cancelled if I fail to produce a certificate from concerned authorities to prove that my {details.sem==="S1"||details.sem==="S2"?"entrance exam rank":"CGPA"} is {details.sem==="S1"||details.sem==="S2"?details.examrank:details.cgpa}</p>
                                 </div>
 
                                 <div className="flex flex-row space-x-2 items-center">
-                                    <input type="checkbox" name="declaration4" checked={details.declaration4} id="declaration4" value={details.declaration4} onChange={()=>{setDetails(d=>({...d,declaration4:!d.declaration4}))}}/>
+                                    <input type="checkbox" name="declaration4" checked={details.declaration4} id="declaration4" value={details.declaration4} disabled />
                                     <p>I know that admssion to the hostel if obtained will be cancelled if I fail to produce a certificate from concerned authorities to prove that my annual family income is {details.aincome}</p>
                                 </div>
                             </>

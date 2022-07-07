@@ -85,19 +85,45 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
         if(details.programme==="ug"){
             setCourses(ugcourses)
         }
+
         if(details.programme==="pg"){
             setCourses(pgcourses)
         }
+
         if(details.programme==="phd"){
             setCourses([{value:"phd",display:"Ph.D"}])
         }
+
         if(details.course==="MTech"){
             setDisplayInput(true)
         }
         else{
             setDisplayInput(false)
         }
-    }, [details.course, details.programme])
+
+        if(details.course==="MTech" || details.course==="MPlan")
+        {
+            setDetails(d=>({...d,examname:"DTE"}))
+        }
+        else if(details.course==="MCA")
+        {
+            setDetails(d=>({...d, examname:"LBS"}))
+        }
+        else if(details.course!=="MCA")
+        {
+            setDetails(d=>({...d, examname:""}))
+        }
+
+        if(details.lateral==="Yes"&&details.programme==="ug")
+        {
+            setDetails(d=>({...d, examname:"DTE"}))
+        }
+        else
+        {
+            setDetails(d=>({...d, examname:""}))
+        }
+
+    }, [details.course, details.programme, details.lateral])
 
     return (
         <div className="w-11/12 md:w-9/12 mx-auto my-6">
@@ -122,15 +148,15 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                 onChange={updatePersonal}
                             />
                             <div className="form-field sm:w-8/12 lg:w-6/12">
-                            <label className="form-label mb-1" htmlFor="fullname">
-                                Gender
-                            </label>
-                            <select required name="gender" id="" value={details.gender} onChange={updatePersonal} className="form-control">
-                                <option value="">Select an option</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option value="others">Others</option>
-                            </select>
+                                <label className="form-label mb-1" htmlFor="fullname">
+                                    Gender
+                                </label>
+                                <select required name="gender" id="" value={details.gender} onChange={updatePersonal} className="form-control">
+                                    <option value="">Select an option</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="others">Others</option>
+                                </select>
                             </div>
                         </div>
                         <div className="form-field sm:w-8/12 lg:w-6/12 mt-4 sm:ml-2.5">
@@ -254,6 +280,19 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
                                 </select>
                             </div>
                         </div>
+
+                        {(details.programme==="ug")&&(details.sem==="S4"||details.sem==="S3")&&(<div className="form-field mt-4 items-center">
+                            <label className="form-label mb-1" htmlFor="lateral">
+                                Lateral Entry
+                            </label>
+                            <div>
+                                <input required type="radio" id="latYes" name="lateral" value="Yes" checked={details.lateral==="Yes"} onChange={(e)=>{setDetails(d=>({...d,lateral:e.target.value}))}}/>
+                                <label htmlFor=""> Yes</label>
+                                <input required type="radio" id="latNo" name="lateral" value="No" className="ml-2" checked={details.lateral==="No"} onChange={(e)=>{setDetails(d=>({...d,lateral:e.target.value}))}}/>
+                                <label htmlFor=""> No</label>
+                            </div>
+                        </div>)}
+
                     </div>
                 </div>
 

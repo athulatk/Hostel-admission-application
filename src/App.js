@@ -12,6 +12,7 @@ import {
   } from "react-router-dom";
 import GeneratePDFAdmin from "./GeneratePdfAdmin";
 import { onValue, ref } from "firebase/database";
+import GeneratePDFUser from "./GeneratePdfUser";
 
 export default function App() {
     const [onBoarding, setOnBoarding] = useState(true);
@@ -116,6 +117,7 @@ export default function App() {
                 <Route exact path="/admin" element={<AdminPanel/>}/>
                 {/* <Route exact path="/admin/home" element={<AdminHome/>}/> */}
                 <Route exact path="/admin/userpdf" element={<GeneratePDFAdmin/>}/>
+                <Route exact path="/user/userpdf" element={<GeneratePDFUser/>}/>
             </Routes>
             </BrowserRouter>
     );
