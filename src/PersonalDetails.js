@@ -123,7 +123,7 @@ function PersonalDetails({ nextform, details, setDetails, saveInfo }) {
             setDetails(d=>({...d, examname:""}))
         }
 
-    }, [details.course, details.programme, details.lateral])
+    }, [details.course, details.programme, details.lateral, setDetails])
 
     return (
         <div className="w-11/12 md:w-9/12 mx-auto my-6">

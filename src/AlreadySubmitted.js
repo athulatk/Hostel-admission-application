@@ -1,5 +1,4 @@
 import React from "react";
-import { Navigate } from "react-router-dom";
 import {useNavigate} from 'react-router-dom'
 // import GeneratePDF from "./GeneratePDF";
 // import GeneratePDFUser from "./GeneratePdfUser";
