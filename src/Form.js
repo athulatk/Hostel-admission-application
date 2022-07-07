@@ -19,7 +19,7 @@ export default function Form({ user, logout }) {
         programme:"",
         dept: "",
         sem: "",
-        lateral:"No",
+        lateral:"",
         mob: "",
         pemail: "",
         address: "",
